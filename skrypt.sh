@@ -16,10 +16,19 @@
 addgroup DBB
 addgroup DBD
 
+# konta dyrektorów
+adduser biz_dyrektor
+adduser det_dyrektor
+
 mkdir kredyty
-chmod a+rwx kredyty
+chmod a+rwxt kredyty
 
 mkdir lokaty
-chmod a+rwx lokaty
+chmod a+rwxt lokaty
+
+setfacl -d -m user:biz_dyrektor:r kredyty
+setfacl -d -m user:biz_dyrektor:r lokaty
+setfacl -d -m user:det_dyrektor:r kredyty
+setfacl -d -m user:biz_dyrektor:r lokaty
 
 mkdir zadania
