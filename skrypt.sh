@@ -13,8 +13,8 @@
 #  - dla zadań
 
 # tworzymy grupy
-addgroup DBB
-addgroup DBD
+adduser --group dbb
+adduser --group dbd
 
 # konta dyrektorów
 adduser biz_dyrektor
@@ -26,9 +26,20 @@ chmod a+rwxt kredyty
 mkdir lokaty
 chmod a+rwxt lokaty
 
+mkdir zadania
+
+setfacl -d -m other:-rw kredyty
+setfacl -d -m other:-rw kredyty
 setfacl -d -m user:biz_dyrektor:r kredyty
 setfacl -d -m user:biz_dyrektor:r lokaty
 setfacl -d -m user:det_dyrektor:r kredyty
 setfacl -d -m user:biz_dyrektor:r lokaty
 
-mkdir zadania
+setfacl -d -m group::r kredyty
+setfacl -d -m group::r lokaty
+
+setfacl -d -m user::rw kredyty
+setfacl -d -m user::rw lokaty
+
+setfacl -d -m user::rw
+setfacl -d -m group::r
