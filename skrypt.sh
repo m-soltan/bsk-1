@@ -12,13 +12,53 @@
 #user: det_dir
 #  - dla zadań
 
-# tworzymy grupy
-adduser --group dbb
-adduser --group dbd
+FILE=$1
+BIZ_GR="DBB"
+DET_GR="DBD"
 
-# konta dyrektorów
-adduser --disabled-password --gecos "" biz_dyrektor
-adduser --disabled-password --gecos "" det_dyrektor
+index=0
+w=()
+biz_dyrektor=""
+det_dyrektor=""
+biz_obsluga=()
+det_obsluga=()
+
+for i in $(cat $FILE); do
+	k=$(echo $(( $index % 5 )) )
+	w[$k]=$i
+	if (( $k == 4 )); then
+		dr="dyrektor"
+		
+		name=$(echo "${w[1]}_$(echo ${w[2]} | head -c 1)_${w[0]}")
+		lowercase=$(echo $name | tr '[:upper:]' '[:lower:]')
+		echo $lowercase
+		gecos=$(echo "${w[1]} ${w[2]}")
+		
+		adduser --disabled-password --gecos "${gecos}" "${lowercase}"
+		if [[ ${w[3]} == $dr ]]; then
+			# dyrektor
+			if [[ ${w[4]} == $BIZ_GR ]]; then
+				biz_dyrektor=$lowercase
+			else
+				det_dyrektor=$lowercase
+			fi
+		else
+			# obsługa
+			if [[ ${w[4]} == $BIZ_GR ]]; then
+				biz_obsluga+=($lowercase)
+			else
+				det_obsluga+=($lowercase)
+			fi
+		fi
+		usermod -a -G ${w[4]} $lowercase
+	fi
+	(( ++index ))
+done
+
+
+# tworzymy grupy
+adduser --force-badname --group $BIZ_GR
+adduser --force-badname --group $DET_GR
 
 mkdir kredyty
 chmod a+rwxt kredyty
@@ -30,10 +70,10 @@ mkdir zadania
 
 setfacl -d -m other:-rw kredyty
 setfacl -d -m other:-rw kredyty
-setfacl -d -m user:biz_dyrektor:r kredyty
-setfacl -d -m user:biz_dyrektor:r lokaty
-setfacl -d -m user:det_dyrektor:r kredyty
-setfacl -d -m user:biz_dyrektor:r lokaty
+setfacl -d -m user:biz_dyrektor:rx kredyty
+setfacl -d -m user:biz_dyrektor:rx lokaty
+setfacl -d -m user:det_dyrektor:rx kredyty
+setfacl -d -m user:biz_dyrektor:rx lokaty
 
 setfacl -d -m group::r kredyty
 setfacl -d -m group::r lokaty

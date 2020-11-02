@@ -3,5 +3,5 @@
 7 Jakub Nowak dyrektor DBB
 37 Maciej Michałowski obsługa DBD
 73 Michał Maciejowski obsługa DBD
-77 Anton Goladkin obsługa DBD
-88 Anton Goladkin obsługa DBD
+77 Anton Goladkin obsługa DBB
+88 Anton Goladkin obsługa DBB
