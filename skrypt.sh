@@ -17,8 +17,8 @@ adduser --group dbb
 adduser --group dbd
 
 # konta dyrektorów
-adduser biz_dyrektor
-adduser det_dyrektor
+adduser --disabled-password --gecos "" biz_dyrektor
+adduser --disabled-password --gecos "" det_dyrektor
 
 mkdir kredyty
 chmod a+rwxt kredyty
@@ -41,5 +41,5 @@ setfacl -d -m group::r lokaty
 setfacl -d -m user::rw kredyty
 setfacl -d -m user::rw lokaty
 
-setfacl -d -m user::rw
+setfacl -d -m user::rw 
 setfacl -d -m group::r
