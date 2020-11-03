@@ -61,11 +61,6 @@ for i in $(cat $FILE); do
 			fi
 		else
 			# obsługa
-			if [[ ${w[4]} == $BIZ_GR ]]; then
-				biz_obsluga+=($lowercase)
-			else
-				det_obsluga+=($lowercase)
-			fi
 
 			# katalog członka obsługi
 			katalog=zadania/${w[0]}
