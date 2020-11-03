@@ -25,6 +25,7 @@ det_obsluga=()
 
 if [[ $# != 1 ]]; then
 	echo "usage: $0 input_file"
+	exit 1
 fi
 
 # tworzymy grupy
