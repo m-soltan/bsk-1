@@ -49,6 +49,7 @@ for i in $(cat $FILE); do
 		if [[ ${w[3]} == "dyrektor" ]]; then
 			# dyrektor
 			nazwa="gfbank${w[0]}dyr"
+			adduser --disabled-password --gecos "${gecos}" $nazwa
 			if [[ ${w[4]} == $BIZ_GR ]]; then
 				biz_dyrektor=$nazwa
 			else
@@ -61,10 +62,10 @@ for i in $(cat $FILE); do
 			katalog=zadania/${w[0]}
 			mkdir $katalog
 			chmod go-rwx $katalog
-			setfacl -m user:$nazwa:rx $katalog	
+			adduser --disabled-password --gecos "${gecos}" $nazwa
+			setfacl -m user:$nazwa:rx $katalog
 		fi
 		
-		adduser --disabled-password --gecos "${gecos}" "${nazwa}"
 		# ustawienia grup użytkownika
 		usermod -a -G ${w[4]} $nazwa
 		usermod -g ${w[4]} $nazwa
