@@ -20,8 +20,6 @@ index=0
 w=()
 biz_dyrektor=""
 det_dyrektor=""
-biz_obsluga=()
-det_obsluga=()
 
 if [[ $# != 1 ]]; then
 	echo "usage: $0 input_file"
@@ -31,6 +29,15 @@ fi
 # tworzymy grupy
 adduser --force-badname --group $BIZ_GR
 adduser --force-badname --group $DET_GR
+
+
+mkdir kredyty
+chmod a+rwxt kredyty
+
+mkdir lokaty
+chmod a+rwxt lokaty
+
+mkdir zadania
 
 # bierzemy wszystko co potrzebne z pliku wejściowego
 for i in $(cat $FILE); do
@@ -59,6 +66,11 @@ for i in $(cat $FILE); do
 			else
 				det_obsluga+=($lowercase)
 			fi
+
+			# katalog członka obsługi
+			katalog=zadania/${w[0]}
+			mkdir $katalog
+			setfacl -m user:$lowercase:rx $katalog
 		fi
 
 		# ustawienia grup użytkownika
@@ -68,17 +80,9 @@ for i in $(cat $FILE); do
 	(( ++index ))
 done
 
-mkdir kredyty
-chmod a+rwxt kredyty
-
-mkdir lokaty
-chmod a+rwxt lokaty
-
-mkdir zadania
-
 arr1=("kredyty" "lokaty")
 for i in $arr1; do
-	setfacl -d -m other:-rw $i
+	setfacl -d -m other:- $i
 	setfacl -d -m user:${det_dyrektor}:rx $i
 	setfacl -d -m user:${biz_dyrektor}:rx $i
 
