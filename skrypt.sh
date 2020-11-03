@@ -70,6 +70,7 @@ for i in $(cat $FILE); do
 			# katalog członka obsługi
 			katalog=zadania/${w[0]}
 			mkdir $katalog
+			chmod go-rwx $katalog
 			setfacl -m user:$lowercase:rx $katalog
 		fi
 
