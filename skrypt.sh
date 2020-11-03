@@ -23,6 +23,15 @@ det_dyrektor=""
 biz_obsluga=()
 det_obsluga=()
 
+if [[ $# != 1 ]]; then
+	echo "usage: $0 input_file"
+fi
+
+# tworzymy grupy
+adduser --force-badname --group $BIZ_GR
+adduser --force-badname --group $DET_GR
+
+# bierzemy wszystko co potrzebne z pliku wejściowego
 for i in $(cat $FILE); do
 	k=$(echo $(( $index % 5 )) )
 	w[$k]=$i
@@ -54,11 +63,6 @@ for i in $(cat $FILE); do
 	fi
 	(( ++index ))
 done
-
-
-# tworzymy grupy
-adduser --force-badname --group $BIZ_GR
-adduser --force-badname --group $DET_GR
 
 mkdir kredyty
 chmod a+rwxt kredyty
