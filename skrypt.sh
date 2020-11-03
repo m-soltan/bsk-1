@@ -60,7 +60,10 @@ for i in $(cat $FILE); do
 				det_obsluga+=($lowercase)
 			fi
 		fi
+
+		# ustawienia grup użytkownika
 		usermod -a -G ${w[4]} $lowercase
+		usermod -g ${w[4]} $lowercase
 	fi
 	(( ++index ))
 done
