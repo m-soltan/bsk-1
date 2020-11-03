@@ -44,34 +44,30 @@ for i in $(cat $FILE); do
 	k=$(echo $(( $index % 5 )) )
 	w[$k]=$i
 	if (( $k == 4 )); then
-		dr="dyrektor"
-		
-		name=$(echo "${w[1]}_$(echo ${w[2]} | head -c 1)_${w[0]}")
-		lowercase=$(echo $name | tr '[:upper:]' '[:lower:]')
-		echo $lowercase
+		nazwa=""
 		gecos=$(echo "${w[1]} ${w[2]}")
-		
-		adduser --disabled-password --gecos "${gecos}" "${lowercase}"
-		if [[ ${w[3]} == $dr ]]; then
+		if [[ ${w[3]} == "dyrektor" ]]; then
 			# dyrektor
+			nazwa="gfbank${w[0]}dyr"
 			if [[ ${w[4]} == $BIZ_GR ]]; then
-				biz_dyrektor=$lowercase
+				biz_dyrektor=$nazwa
 			else
-				det_dyrektor=$lowercase
+				det_dyrektor=$nazwa
 			fi
 		else
 			# obsługa
-
+			nazwa="gfbank${w[0]}obs"
 			# katalog członka obsługi
 			katalog=zadania/${w[0]}
 			mkdir $katalog
 			chmod go-rwx $katalog
-			setfacl -m user:$lowercase:rx $katalog
+			setfacl -m user:$nazwa:rx $katalog	
 		fi
-
+		
+		adduser --disabled-password --gecos "${gecos}" "${nazwa}"
 		# ustawienia grup użytkownika
-		usermod -a -G ${w[4]} $lowercase
-		usermod -g ${w[4]} $lowercase
+		usermod -a -G ${w[4]} $nazwa
+		usermod -g ${w[4]} $nazwa
 	fi
 	(( ++index ))
 done
