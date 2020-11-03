@@ -68,12 +68,16 @@ chmod a+rwxt lokaty
 
 mkdir zadania
 
+arr1=("kredyty" "lokaty")
+for i in $arr1; do
+	setfacl -d -m other:-rw $i
+	
 setfacl -d -m other:-rw kredyty
-setfacl -d -m other:-rw kredyty
-setfacl -d -m user:biz_dyrektor:rx kredyty
-setfacl -d -m user:biz_dyrektor:rx lokaty
-setfacl -d -m user:det_dyrektor:rx kredyty
-setfacl -d -m user:biz_dyrektor:rx lokaty
+setfacl -d -m other:-rw lokaty
+setfacl -d -m user:${biz_dyrektor}:rx kredyty
+setfacl -d -m user:${biz_dyrektor}:rx lokaty
+setfacl -d -m user:${det_dyrektor}:rx kredyty
+setfacl -d -m user:${biz_dyrektor}:rx lokaty
 
 setfacl -d -m group::r kredyty
 setfacl -d -m group::r lokaty
