@@ -80,15 +80,11 @@ for i in $(cat $FILE); do
 	(( ++index ))
 done
 
-arr1=("kredyty" "lokaty")
+arr1=("kredyty" "lokaty" "zadania")
 for i in $arr1; do
+	setfacl -d -m user::rw $i
+	setfacl -d -m group::- $i
 	setfacl -d -m other:- $i
 	setfacl -d -m user:${det_dyrektor}:rx $i
 	setfacl -d -m user:${biz_dyrektor}:rx $i
-
-	setfacl -d -m group::r $i
-	setfacl -d -m user::rw $i
 done
-
-setfacl -d -m user::rw zadania
-setfacl -d -m group::r zadania
