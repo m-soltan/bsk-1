@@ -71,9 +71,7 @@ mkdir zadania
 arr1=("kredyty" "lokaty")
 for i in $arr1; do
 	setfacl -d -m other:-rw $i
-	
-setfacl -d -m other:-rw kredyty
-setfacl -d -m other:-rw lokaty
+done
 setfacl -d -m user:${biz_dyrektor}:rx kredyty
 setfacl -d -m user:${biz_dyrektor}:rx lokaty
 setfacl -d -m user:${det_dyrektor}:rx kredyty
@@ -85,5 +83,5 @@ setfacl -d -m group::r lokaty
 setfacl -d -m user::rw kredyty
 setfacl -d -m user::rw lokaty
 
-setfacl -d -m user::rw 
-setfacl -d -m group::r
+setfacl -d -m user::rw zadania
+setfacl -d -m group::r zadania
