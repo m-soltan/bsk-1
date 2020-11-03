@@ -90,6 +90,3 @@ for i in $arr1; do
 	setfacl -d -m group::r $i
 	setfacl -d -m user::rw $i
 done
-
-setfacl -d -m user::rw zadania
-setfacl -d -m group::r zadania
