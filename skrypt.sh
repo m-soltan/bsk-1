@@ -16,8 +16,7 @@ FILE=$1
 BIZ_GR="DBB"
 DET_GR="DBD"
 
-index=0
-w=()
+
 biz_dyrektor=""
 det_dyrektor=""
 
@@ -39,22 +38,40 @@ chmod a+rwxt lokaty
 
 mkdir zadania
 
-# bierzemy wszystko co potrzebne z pliku wejściowego
-for i in $(cat $FILE); do
+
+# najpierw ustalamy kto jest dyrektorem
+index=0
+w=()
+for i in $(cat $1); do
 	k=$(echo $(( $index % 5 )) )
 	w[$k]=$i
 	if (( $k == 4 )); then
-		nazwa=""
-		gecos=$(echo "${w[1]} ${w[2]}")
 		if [[ ${w[3]} == "dyrektor" ]]; then
 			# dyrektor
 			nazwa="gfbank${w[0]}dyr"
+			gecos=$(echo "${w[1]} ${w[2]}")
 			adduser --disabled-password --gecos "${gecos}" $nazwa
 			if [[ ${w[4]} == $BIZ_GR ]]; then
 				biz_dyrektor=$nazwa
 			else
 				det_dyrektor=$nazwa
 			fi
+		fi
+	fi
+	(( ++index ))
+done
+
+
+# bierzemy wszystko co potrzebne z pliku
+index=0
+w=()
+for i in $(cat $FILE); do
+	k=$(echo $(( $index % 5 )) )
+	w[$k]=$i
+	if (( $k == 4 )); then
+		nazwa=""
+		if [[ ${w[3]} == "dyrektor" ]]; then
+			# nic nie robimy, dyrektorów już obsłużyliśmy
 		else
 			# obsługa
 			nazwa="gfbank${w[0]}obs"
@@ -64,6 +81,11 @@ for i in $(cat $FILE); do
 			chmod go-rwx $katalog
 			adduser --disabled-password --gecos "${gecos}" $nazwa
 			setfacl -m user:$nazwa:rx $katalog
+			if [[ ${w[4]} == $BIZ_GR ]]; then
+				setfacl -m user:$biz_dyrektor:rwx $katalog
+			else
+				setfacl -m user:$det_dyrektor:rwx $katalog
+			fi
 		fi
 		
 		# ustawienia grup użytkownika
