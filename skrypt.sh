@@ -70,10 +70,7 @@ for i in $(cat $FILE); do
 	w[$k]=$i
 	if (( $k == 4 )); then
 		nazwa=""
-		if [[ ${w[3]} == "dyrektor" ]]; then
-			# nic nie robimy, dyrektorów już obsłużyliśmy
-		else
-			# obsługa
+		if [[ ${w[3]} == "obsługa" ]]; then
 			nazwa="gfbank${w[0]}obs"
 			# katalog członka obsługi
 			katalog=zadania/${w[0]}
