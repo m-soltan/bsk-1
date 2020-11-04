@@ -56,6 +56,9 @@ for i in $(cat $1); do
 			else
 				det_dyrektor=$nazwa
 			fi
+			# ustawienia grup użytkownika
+			usermod -a -G ${w[4]} $nazwa
+			usermod -g ${w[4]} $nazwa
 		fi
 	fi
 	(( ++index ))
@@ -71,6 +74,7 @@ for i in $(cat $FILE); do
 	if (( $k == 4 )); then
 		nazwa=""
 		if [[ ${w[3]} == "obsługa" ]]; then
+			# obsługa
 			nazwa="gfbank${w[0]}obs"
 			# katalog członka obsługi
 			katalog=zadania/${w[0]}
@@ -83,11 +87,10 @@ for i in $(cat $FILE); do
 			else
 				setfacl -m user:$det_dyrektor:rwx $katalog
 			fi
+			# ustawienia grup użytkownika
+			usermod -a -G ${w[4]} $nazwa
+			usermod -g ${w[4]} $nazwa
 		fi
-		
-		# ustawienia grup użytkownika
-		usermod -a -G ${w[4]} $nazwa
-		usermod -g ${w[4]} $nazwa
 	fi
 	(( ++index ))
 done
