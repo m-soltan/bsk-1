@@ -24,12 +24,12 @@ for i in $(cat $1); do
 	(( ++index ))
 done
 
-su -c "bash testy/a.sh ${1}" $det_dyrektor
-# su -c "bash testy/b.sh ${1}" $biz_dyrektor
-# su -c "bash testy/c.sh ${1}" $det_dyrektor
-# su -c "bash testy/d.sh ${1}" $biz_dyrektor
+su -c "bash testy/a.sh ../${1}" $det_dyrektor
+# su -c "bash testy/b.sh ../${1}" $biz_dyrektor
+# su -c "bash testy/c.sh ../${1}" $det_dyrektor
+# su -c "bash testy/d.sh ../${1}" $biz_dyrektor
 
 # każde z tych dwóch w pętli
-# su -c "bash testy/e.sh ${1}" $pracownik
-# su -c "bash testy/f.sh ${1}" $pracownik
-# su -c "bash testy/g.sh ${1}" $pracownik
+# su -c "bash testy/e.sh ../${1}" $pracownik
+# su -c "bash testy/f.sh ../${1}" $pracownik
+# su -c "bash testy/g.sh ../${1}" $pracownik
