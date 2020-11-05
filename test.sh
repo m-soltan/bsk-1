@@ -14,7 +14,7 @@ for i in $(cat $1); do
 			# dyrektor
 			nazwa="gfbank${w[0]}dyr"
 			gecos=$(echo "${w[1]} ${w[2]}")
-			if [[ ${w[4]} == $BIZ_GR ]]; then
+			if [[ ${w[4]} == "DBB" ]]; then
 				biz_dyrektor=$nazwa
 			else
 				det_dyrektor=$nazwa
