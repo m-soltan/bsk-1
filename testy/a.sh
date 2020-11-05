@@ -1,11 +1,9 @@
 #!/usr/bin/bash
 
 plik=$1
-biz_dyrektor=$2
-det_dyrektor=$3
 
-if [[ $# != 3 ]]; then
-	echo "użycie: $0 plik biz_dyrektor det_dyrektor"
+if [[ $# != 1 ]]; then
+	echo "użycie: $0 plik"
 	exit
 fi
 
