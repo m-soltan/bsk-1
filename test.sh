@@ -24,56 +24,12 @@ for i in $(cat $1); do
 	(( ++index ))
 done
 
-# podpunkt a
-function test_a {
-	cd zadania
-	index=5
-	for i in $(cat $1); do
-		if [[ $index == 4 ]]; then
-			printf "kredyt" > $i/z1.txt
-			printf "lokata" > $i/z2.txt
-			index=0
-		fi
-		(( ++index ))
-	done
-}
+su -c "./testy/a.sh ${1}"
+# su -c "./testy/b.sh ${1}"
+# su -c "./testy/c.sh ${1}"
+# su -c "./testy/d.sh ${1}"
+# su -c "./testy/e.sh ${1}"
 
-su -c="test_a $1" $det_dyrektor
-
-# podpunkt b
-function test_b {
-	cd zadania
-	index=5
-	for i in $(cat $1); do
-		if [[ $index == 4 ]]; then
-			printf "kredyt" > $i/z1.txt
-			printf "kredyt" > $i/z2.txt
-			printf "lokata" > $i/z3.txt
-			index=0
-		fi
-		(( ++index ))
-	done	
-}
-
-su -c="test_b $1" $biz_dyrektor
-
-# podpunkt c
-function test_c {
-	cd zadania
-	index=5
-	id=0
-	for i in $(cat $1); do
-		if [[ $index == 5 ]]; then
-			id=$i
-			index=0
-		fi
-		if [[ $index == 4 ]]; then
-			if [[ $i == 'DBB' ]]; then
-				cat ${id}/z1.txt >/dev/null
-			fi
-		fi
-		(( ++index ))
-	done
-}
-
-su -c="test_c $1" $det_dyrektor
+# każde z tych dwóch w pętli
+# su -c "./testy/f.sh ${1}" $pracownik
+# su -c "./testy/g.sh ${1}" $pracownik
