@@ -20,7 +20,7 @@ for i in $(cat $plik); do
 		rola=$i
 	fi
 	if [[ $index == 4 ]]; then
-		if [[ $i == 'DBD' ]]; then
+		if [[ $i == "DBD" ]]; then
 			if [[ $rola == "obsługa" ]]; then
 				printf "kredyt" > ${pracownik}/z1.txt
 				printf "lokata" > ${pracownik}/z2.txt
