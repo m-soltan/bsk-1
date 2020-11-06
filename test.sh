@@ -30,13 +30,13 @@ done
 
 # podpunkty a-d
 su -c "bash testy/a.sh ../${1}" $det_dyrektor >/dev/null 2>/dev/null
-echo $?
+echo "a: ${?}"
 su -c "bash testy/b.sh ../${1}" $biz_dyrektor >/dev/null 2>/dev/null
-echo $?
+echo "b: ${?}"
 su -c "bash testy/c.sh ../${1}" $det_dyrektor >/dev/null 2>/dev/null
-echo $?
+echo "c: ${?}"
 su -c "bash testy/d.sh ../${1}" $biz_dyrektor >/dev/null 2>/dev/null
-echo $?
+echo "d: ${?}"
 
 # podpunkt e
 index=5
@@ -49,7 +49,7 @@ for i in $(cat $1); do
 	if [[ $index == 3 ]]; then
 		if [[ $i == "obsługa" ]]; then
 			su -c "bash testy/e.sh ${pracownik}" "gfbank${pracownik}obs" >/dev/null 2>/dev/null
-			echo $?
+			echo "e: ${?}"
 		fi
 	fi
 	(( ++index ))
@@ -66,7 +66,7 @@ for i in $(cat $1); do
 	if [[ $index == 3 ]]; then
 		if [[ $i == "obsługa" ]]; then
 			su -c "bash testy/f.sh ${pracownik}" "gfbank${pracownik}obs" >/dev/null 2>/dev/null
-			echo $?
+			echo "f: ${?}"
 		fi
 	fi
 	(( ++index ))
@@ -83,7 +83,7 @@ for i in $(cat $1); do
 	if [[ $index == 3 ]]; then
 		if [[ $i == "obsługa" ]]; then
 			su -c "bash testy/g.sh" "gfbank${pracownik}obs" >/dev/null 2>/dev/null
-			echo $?
+			echo "g: ${?}"
 		fi
 	fi
 	(( ++index ))
