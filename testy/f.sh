@@ -6,11 +6,11 @@ if [[ $# != 1 ]]; then
 fi
 
 for i in $(grep "lokata" -lR zadania/$1 | xargs -L 1 basename); do
-	timestamp=$(date +%s)
-	printf "zrobione" > lokaty/${1}_${timestamp}.txt
+	nanoseconds=$(date +%N)
+	printf "zrobione" > lokaty/${1}_${nanoseconds}.txt
 done
 
 for i in $(grep "kredyt" -lR zadania/$1 | xargs -L 1 basename); do
-	timestamp=$(date +%s)
-	printf "zrobione" > kredyty/${i}_${timestamp}.txt
+	nanoseconds=$(date +%N)
+	printf "zrobione" > kredyty/${i}_${nanoseconds}.txt
 done
