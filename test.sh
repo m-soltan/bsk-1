@@ -40,7 +40,7 @@ pracownik=""
 for i in $(cat $1); do
 	if [[ $index == 5 ]]; then
 		pracownik=$i
-		$index=0
+		index=0
 	fi
 	if [[ $index == 3 ]]; then
 		if [[ $i == "obsługa" ]]; then
@@ -56,7 +56,7 @@ pracownik=""
 for i in $(cat $1); do
 	if [[ $index == 5 ]]; then
 		pracownik=$i
-		$index=0
+		index=0
 	fi
 	if [[ $index == 3 ]]; then
 		if [[ $i == "obsługa" ]]; then
@@ -72,7 +72,7 @@ pracownik=""
 for i in $(cat $1); do
 	if [[ $index == 5 ]]; then
 		pracownik=$i
-		$index=0
+		index=0
 	fi
 	if [[ $index == 3 ]]; then
 		if [[ $i == "obsługa" ]]; then
