@@ -44,7 +44,7 @@ for i in $(cat $1); do
 	fi
 	if [[ $index == 3 ]]; then
 		if [[ $i == "obsługa" ]]; then
-			su -c "bash testy/e.sh ${pracownik}" $pracownik
+			su -c "bash testy/e.sh ${pracownik}" "gfbank${pracownik}obs"
 		fi
 	fi
 	(( ++index ))
@@ -60,7 +60,7 @@ for i in $(cat $1); do
 	fi
 	if [[ $index == 3 ]]; then
 		if [[ $i == "obsługa" ]]; then
-			su -c "bash testy/f.sh ${pracownik}" $pracownik
+			su -c "bash testy/f.sh ${pracownik}" "gfbank${pracownik}obs"
 		fi
 	fi
 	(( ++index ))
@@ -76,7 +76,7 @@ for i in $(cat $1); do
 	fi
 	if [[ $index == 3 ]]; then
 		if [[ $i == "obsługa" ]]; then
-			su -c "bash testy/g.sh" $pracownik
+			su -c "bash testy/g.sh" "gfbank${pracownik}obs"
 		fi
 	fi
 	(( ++index ))
