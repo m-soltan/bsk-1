@@ -7,7 +7,6 @@ if [[ $# != 1 ]]; then
 	exit
 fi
 
-cd zadania
 index=5
 pracownik=""
 rola=""
@@ -22,7 +21,7 @@ for i in $(cat $1); do
 	if [[ $index == 4 ]]; then
 		if [[ $i == "DBD" ]]; then
 			if [[ $rola == "obsługa" ]]; then
-				cat ${pracownik}/z1.txt >/dev/null
+				cat zadania/${pracownik}/z1.txt >/dev/null
 			fi
 		fi
 	fi
