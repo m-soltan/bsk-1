@@ -22,7 +22,7 @@ for i in $(cat $1); do
 	if [[ $index == 4 ]]; then
 		if [[ $i == "DBB" ]]; then
 			if [[ $rola == "obsługa" ]]; then
-				cat ${id}/z1.txt >/dev/null
+				cat ${plik}/z1.txt >/dev/null
 			fi
 		fi
 	fi
