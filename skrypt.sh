@@ -84,8 +84,10 @@ for i in $(cat $FILE); do
 			setfacl -m user:$nazwa:rx $katalog
 			if [[ ${w[4]} == $BIZ_GR ]]; then
 				setfacl -m user:$biz_dyrektor:rwx $katalog
+				setfacl -m user:$det_dyrektor:rx $katalog
 			else
 				setfacl -m user:$det_dyrektor:rwx $katalog
+				setfacl -m user:$biz_dyrektor:rx $katalog
 			fi
 			# ustawienia grup użytkownika
 			usermod -a -G ${w[4]} $nazwa
