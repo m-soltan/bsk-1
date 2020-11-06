@@ -36,6 +36,7 @@ echo $?
 su -c "bash testy/c.sh ../${1}" $det_dyrektor >/dev/null 2>/dev/null
 echo $?
 su -c "bash testy/d.sh ../${1}" $biz_dyrektor >/dev/null 2>/dev/null
+echo $?
 
 # podpunkt e
 index=5
