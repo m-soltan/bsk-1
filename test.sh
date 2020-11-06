@@ -1,5 +1,9 @@
 #!/usr/bin/bash
 
+if [[ $# != 1 ]]; then
+	echo "użycie: $0 plik"
+	exit
+fi
 
 # znowu znajdujemy dyrektorów
 biz_dyrektor=""
